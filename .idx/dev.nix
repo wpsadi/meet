@@ -9,6 +9,11 @@
     pkgs.yarn
     pkgs.nodePackages.pnpm
     pkgs.bun
+    pkgs.docker
+    pkgs.docker-compose
+    pkgs.htop-vim
+    pkgs.sudo
+    pkgs.systemd
   ];
   # Sets environment variables in the workspace
   env = {};

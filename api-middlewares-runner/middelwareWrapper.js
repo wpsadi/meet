@@ -1,6 +1,5 @@
 import AppError from "@/apiErrorWrapper/errHandler"
 import { errWrapperAsync } from "@/apiErrorWrapper/errWrapper"
-import next from "next";
 import { NextResponse } from "next/server"
 
 export const RunAsMiddlewares = async (req, fnArray) => errWrapperAsync(req, async (req) => {

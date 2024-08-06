@@ -26,8 +26,8 @@ export const createSessionCookie = (user)=>{
     const cookieOptions = {
         httpOnly:true,
         expires:CookieExpiry + (new Date().getTime() ),
-        secure:true,
-        sameSite:"strict"
+        secure:false,
+        sameSite:"lax"
     }
 
     return [CookieName,CookieValue.token,cookieOptions]

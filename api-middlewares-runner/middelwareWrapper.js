@@ -18,22 +18,26 @@ export const RunAsMiddlewares = async (req, fnArray) => errWrapperAsync(req, asy
     throw new AppError("At least 2 middlewares are required")
   }
   
+  const chainStore = {}
+
   let start = 0
-  async function startChain(){
+  async function startChain(store){
     let currentFuntion = fnArray[start]
     let nextFunction = fnArray[start+1]
-
     const next =async ()=>{
       start++
+      if (start == countFn){
+        throw new AppError("No more middlewares to run")
+      }
       currentFuntion = fnArray[start]
       nextFunction = fnArray[start+1]
 
-      return await currentFuntion(req,next)
+      return await currentFuntion(req,next,store)
     }
-    return await currentFuntion(req,next)
+    return await currentFuntion(req,next,store)
   }
 
-  return await startChain()
+  return await startChain(chainStore)
 })
 
 

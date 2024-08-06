@@ -16,7 +16,7 @@ export  const createJWTtoken = (user)=>{
 
     const payload = {
         role,email,
-        email_verification:email_verification,
+        // email_verification:email_verification,
         createdAt:new Date().getTime(),
         validTill:(new Date().getTime() + parseInt(process.env.CookieExpiry))
       }

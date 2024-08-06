@@ -29,3 +29,30 @@ export const errWrapperAsync =async (req,fn)=>{
     }
 }
 
+export const errWrapperNext = (req,next,fn,store)=>{
+    try{
+        if (!req instanceof NextRequest){
+            throw new Error("req is not an instance of NextRequest")
+        }
+        // if (isAsync){
+            return  fn(req,next,store)
+        // }
+       
+    }catch(err){
+        return errResponder(err)
+    }
+}
+
+export const errWrapperNextAsync =async (req,next,store,fn)=>{
+    try{
+        if (!req instanceof NextRequest){
+            throw new Error("req is not an instance of NextRequest")
+        }
+        // if (isAsync){
+            return await fn(req,next,store)
+        // }
+       
+    }catch(err){
+        return errResponder(err)
+    }
+}
